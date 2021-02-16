@@ -1,5 +1,6 @@
 {
 	"recipient" : {
-		"name" : "Wolrd"
+		"name" : "World",
+		"amount" : "123"
 	}
 }

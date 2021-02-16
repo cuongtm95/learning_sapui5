@@ -29,9 +29,14 @@
 									text="{i18n>showHelloButtonText}"
 									press="onShowHello"/>
 								<Input
-									value="{helloPanel>/recipient/name}"
+									value="{
+										path: 'helloPanel>/recipient/name',
+										type: 'sap.ui.model.type.Float',
+										formatOptions: {minFractionDigits: 2},
+										constraints: {maximum : 3000}
+									}"
 									description="Hello {helloPanel>/recipient/name}"
-									valueLiveUpdate="true"
+									valueLiveUpdate="false"
 									width="60%"/>
 							</IconTabFilter>
 							<IconTabFilter id="layouts" text="{i18n>layoutFilter}">
@@ -84,7 +89,16 @@
 										<items>
 											<ObjectListItem
 												title="{Name}"
-												number="{Price}"
+												number="{
+													parts: [
+														{path: 'Price'},
+														{path: 'CurrencyCode'}
+													],
+													type: 'sap.ui.model.type.Currency',
+													formatOptions: {
+														showMeasure: false
+													}
+												}"
 												numberUnit="{CurrencyCode}"
 												numberState="{= ${Price} > 500 ? 'Error' : 'Success'}"
 												intro="{ProductID}">

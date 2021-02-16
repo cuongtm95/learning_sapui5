@@ -5,7 +5,7 @@ sap.ui.define([
 	], function(Controller, MessageToast, formatter) {
 		"use strict";
 	
-	Controller.extend("opensap.myapp.controller.App", {
+	return Controller.extend("opensap.myapp.controller.App", {
 		
 		formatter : formatter,
 		
