@@ -4,12 +4,22 @@
 		"_version": "1.3.0",
 		"id": "opensap.myapp",
 		"type": "application",
+		"i18n": "i18n/i18n.properties",
 		"title": "{{appTitle}}",
 		"description": "{{appDescription}}",
 		"applicationVersion": {
 			"version": "1.0.0"
 		},
-		"i18n": "i18n/i18n.properties"
+		"dataSources": {
+			"ES5": {
+				"uri": "/destinations/ES5/sap/opu/odata/IWBEP/GWSAMPLE_BASIC/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"annotations": []
+				}
+			}
+		}
 	},
 	"sap.ui": {
 		"_version": "1.3.0",
@@ -19,9 +29,7 @@
 			"tablet": true,
 			"phone": true
 		},
-		"supportedThemes": [
-			"sap_bluecrystal"
-		]
+		"supportedThemes": ["sap_bluecrystal"]
 	},
 	"sap.ui5": {
 		"_version": "1.2.0",
@@ -46,6 +54,12 @@
 			}
 		},
 		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "opensap.myapp.i18n.i18n"
+				}
+			},
 			"helloPanel": {
 				"type": "sap.ui.model.json.JSONModel",
 				"uri": "model/HelloPanel.json"
@@ -54,11 +68,8 @@
 				"type": "sap.ui.model.json.JSONModel",
 				"uri": "model/Address.json"
 			},
-			"i18n": {
-				"type": "sap.ui.model.resource.ResourceModel",
-				"settings": {
-					"bundleName": "opensap.myapp.i18n.i18n"
-				}
+			"": {
+				"dataSource": "ES5"
 			}
 		},
 		"contentDensities": {
