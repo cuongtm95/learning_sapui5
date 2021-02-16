@@ -85,8 +85,19 @@
 											<ObjectListItem
 												title="{Name}"
 												number="{Price}"
-												intro="{ProductID}"
-												numberUnit="{CurrencyCode}" />
+												numberUnit="{CurrencyCode}"
+												numberState="{= ${Price} > 500 ? 'Error' : 'Success'}"
+												intro="{ProductID}">
+												<firstStatus>
+													<ObjectStatus text="{
+														parts: [
+															{path: 'WeightUnit'},
+															{path: 'WeightMeasure'}
+														],
+														formatter : '.formatter.delivery'
+													}"/>
+												</firstStatus>
+											</ObjectListItem>
 										</items>
 									</List>
 								</content>
