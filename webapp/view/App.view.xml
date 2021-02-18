@@ -1,53 +1,29 @@
-<mvc:View
-	displayBlock="true"
-	xmlns:mvc="sap.ui.core.mvc"
-	xmlns:core="sap.ui.core"
-	xmlns:f="sap.ui.layout.form"
-	xmlns="sap.m"
-	controllerName="opensap.myapp.controller.App">
+<mvc:View displayBlock="true" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout"
+	xmlns="sap.m" controllerName="opensap.myapp.controller.App">
 	<App>
 		<pages>
 			<Page title="openSAP - Developing Web Apps with SAPUI5">
 				<content>
-					<IconTabBar
-						selectedKey="db"
-						id="idTopLevelIconTabBar"
-						class="sapUiResponsiveContentPadding">
+					<IconTabBar selectedKey="db" id="idTopLevelIconTabBar" class="sapUiResponsiveContentPadding">
 						<items>
 							<IconTabFilter id="start" text="{i18n>gettingStartedFilter}">
 								<Carousel>
 									<pages>
-										<Image
-											src="https://upload.wikimedia.org/wikipedia/commons/9/9f/GEO_Globe.jpg"
-											height="600px"/>
+										<Image src="https://upload.wikimedia.org/wikipedia/commons/9/9f/GEO_Globe.jpg" height="600px"/>
 										<Image
 											src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Wikipedia_Hello_World_Graphic.svg/2000px-Wikipedia_Hello_World_Graphic.svg.png"
 											height="600px"/>
 									</pages>
 								</Carousel>
-								<Button
-									text="{i18n>showHelloButtonText}"
-									press="onShowHello"/>
+								<Button text="{i18n>showHelloButtonText}" press="onShowHello"/>
 								<Input
-									value="{
-										path: 'helloPanel>/recipient/name',
-										type: 'sap.ui.model.type.Float',
-										formatOptions: {minFractionDigits: 2},
-										constraints: {maximum : 3000}
-									}"
-									description="Hello {helloPanel>/recipient/name}"
-									valueLiveUpdate="false"
-									width="60%"/>
+									value="{ path: 'helloPanel>/recipient/name', type: 'sap.ui.model.type.Float', formatOptions: {minFractionDigits: 2}, constraints: {maximum : 3000} }"
+									description="Hello {helloPanel>/recipient/name}" valueLiveUpdate="false" width="60%"/>
 							</IconTabFilter>
 							<IconTabFilter id="layouts" text="{i18n>layoutFilter}">
-								<MessageStrip
-									type="Information"
-									showIcon="true"
+								<MessageStrip type="Information" showIcon="true"
 									text="Here's a Form Layout inside an Icon Tab Bar. The labels on the right hand-side are aligned to the right, while the input fields are aligned to the left. The icons of 'Publish' and 'Save Draft' button are taken from the UI5 icon library. You can find them in the icon explorer by their names 'save' and 'outbox'. Finally, please note the usage of predefined margins to create a space below this MessageStrip control and above the Toolbar control."/>
-								<f:SimpleForm id="simpleFormChange"
-									title="Address"
-									editable="true"
-									class="sapUiSmallMarginTopBottom">
+								<f:SimpleForm id="simpleFormChange" title="Address" editable="true" class="sapUiSmallMarginTopBottom">
 									<f:content>
 										<Label text="{i18n>layoutFormName}"/>
 										<Input value="{address>/Name}"/>
@@ -58,7 +34,7 @@
 										<Label text="{i18n>layoutFormZIPCode}"/>
 										<Input value="{address>/ZIPCode}"/>
 										<Label text="{i18n>layoutFormCity}"/>
-										<Input value="{address>/City}" />
+										<Input value="{address>/City}"/>
 										<Label text="{i18n>layoutFormCountry}"/>
 										<Select>
 											<items>
@@ -71,26 +47,14 @@
 								</f:SimpleForm>
 								<Toolbar>
 									<ToolbarSpacer/>
-									<Button
-										text="{i18n>layoutPublishButton}"
-										icon="sap-icon://outbox"
-										type="Accept"/>
-									<Button
-										text="{i18n>layoutDraftButton}"
-										icon="sap-icon://save" />
+									<Button text="{i18n>layoutPublishButton}" icon="sap-icon://outbox" type="Accept"/>
+									<Button text="{i18n>layoutDraftButton}" icon="sap-icon://save"/>
 								</Toolbar>
 							</IconTabFilter>
-							<IconTabFilter
-								text="{i18n>dataBindingFilter}" key="db">
+							<IconTabFilter text="{i18n>dataBindingFilter}" key="db">
 								<content>
-									<List id="productsList"
-										items="{
-											path: '/ProductSet',
-											sorter: {
-												path: 'Category',
-												group: true
-											}
-										}">
+									<List id="productsList" items="{ path: '/ProductSet', sorter: { path: 'Category', group: true } }" growing="true" growingThreshold="5"
+										growingScrollToLoad="false">
 										<headerToolbar>
 											<Toolbar>
 												<Title text="{i18n>productListTitle}"/>
@@ -99,33 +63,23 @@
 											</Toolbar>
 										</headerToolbar>
 										<items>
-											<ObjectListItem
-												title="{Name}"
-												number="{
-													parts: [
-														{path: 'Price'},
-														{path: 'CurrencyCode'}
-													],
-													type: 'sap.ui.model.type.Currency',
-													formatOptions: {
-														showMeasure: false
-													}
-												}" 
-												numberUnit="{CurrencyCode}"
-												numberState="{= ${Price} > 500 ? 'Error' : 'Success'}"
-												intro="{ProductID}">
+											<ObjectListItem title="{Name}"
+												number="{ parts: [ {path: 'Price'}, {path: 'CurrencyCode'} ], type: 'sap.ui.model.type.Currency', formatOptions: { showMeasure: false } }"
+												numberUnit="{CurrencyCode}" numberState="{= ${Price} > 500 ? 'Error' : 'Success'}" intro="{ProductID}" press="onItemSelected" type="Active">
 												<firstStatus>
-													<ObjectStatus text="{
-														parts: [
-															{path: 'WeightUnit'},
-															{path: 'WeightMeasure'}
-														],
-														formatter : '.formatter.delivery'
-													}"/>
+													<ObjectStatus text="{ parts: [ {path: 'WeightUnit'}, {path: 'WeightMeasure'} ], formatter : '.formatter.delivery' }"/>
 												</firstStatus>
 											</ObjectListItem>
 										</items>
 									</List>
+									<Panel id="productDetailsPanel" headerText="{i18n>productDetailsPanelHeader}" visible="false">
+										<l:Grid>
+											<Text text="{i18n>productDetailPanelID}: {ProductID}"/>
+											<Text text="{i18n>productDetailPanelName}: {Name}"/>
+											<Text text="{i18n>productDetailPanelDescription}: {i18n>linebreak} {Description}"/> <!-- workaround for linebreak bug SAPUI5 (created a translation for linebreak-->
+											<Text text="{i18n>productDetailPanelPrice}: {Price}"/>
+										</l:Grid>
+									</Panel>
 								</content>
 							</IconTabFilter>
 						</items>
