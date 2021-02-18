@@ -26,6 +26,14 @@ sap.ui.define([], function() {
 			}
 			
 			return sResult;
+		},
+		
+		formatMapUrl: function(sStreet, sHouseNumber, sZipcode, sCity, sCountry) {
+			
+			var address =  jQuery.sap.encodeURL(sStreet + "," + sHouseNumber + "," + sZipcode +  "," + sCity + "," + sCountry),
+				myAPI = "&key=AIzaSyBWyJGCfBjXsoTG99nLQdyqB1CZfs6vqv4";
+			
+			return "https://maps.googleapis.com/maps/api/staticmap?center=" + address + "&size=600x600&&zoom=15&markers=color:red%7C" + address + myAPI;
 		}
 	};
 });

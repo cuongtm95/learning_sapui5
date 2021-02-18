@@ -50,6 +50,21 @@
 									<Button text="{i18n>layoutPublishButton}" icon="sap-icon://outbox" type="Accept"/>
 									<Button text="{i18n>layoutDraftButton}" icon="sap-icon://save"/>
 								</Toolbar>
+								<Panel id="mapLocation" headerText="Location" width="auto">
+									<FlexBox alignItems="Center" justifyContent="Center">
+										<Image src="{
+										parts: [
+											{path: 'address>/Street'},
+											{path: 'address>/HouseNumber'},
+											{path: 'address>/ZIPcode'},
+											{path: 'address>/City'},
+											{path: 'address>Country'}
+											],
+											
+											formatter: '.formatter.formatMapUrl'
+											}"/>
+									</FlexBox>
+								</Panel>
 							</IconTabFilter>
 							<IconTabFilter text="{i18n>dataBindingFilter}" key="db">
 								<content>
@@ -81,8 +96,7 @@
 										<l:Grid>
 											<Text text="{i18n>productDetailPanelID}: {ProductID}"/>
 											<Text text="{i18n>productDetailPanelName}: {Name}"/>
-											<Text text="{i18n>productDetailPanelDescription}: {i18n>linebreak} {Description}"/>
-											<!-- workaround for linebreak bug SAPUI5 (created a translation for linebreak-->
+											<Text text="{i18n>productDetailPanelDescription}: {i18n>linebreak} {Description}"/> <!-- workaround for linebreak bug SAPUI5 (created a translation for linebreak-->
 											<Text text="{i18n>productDetailPanelPrice}: {Price}"/>
 										</l:Grid>
 									</Panel>
