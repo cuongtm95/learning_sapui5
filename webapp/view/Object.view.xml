@@ -25,6 +25,7 @@
 				}"
 				unit="{CurrencyCode}"
 			/>
+			<ObjectAttribute text="{Name}"/>
 		</semantic:headerContent>
 
 		<semantic:sendEmailAction>
