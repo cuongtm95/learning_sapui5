@@ -16,6 +16,36 @@
 		</semantic:titleHeading>
 
 		<semantic:content>
+			<IconTabBar
+		id="idIconTabBar"
+		select="onFilterSelect">
+		<items>
+			<IconTabFilter
+				showAll="true"
+				count="{/ProductCollectionStats/Counts/Total}"
+				text="All products"
+				key="All" />
+			<IconTabSeparator />
+			<IconTabFilter
+				icon="sap-icon://loan"
+				iconColor="Positive"
+				count="{worklistView>/Cheap}"
+				text="Cheap"
+				key="Cheap" />
+			<IconTabFilter
+				icon="sap-icon://money-bills"
+				iconColor="Critical"
+				count="{worklistView>/Moderate}"
+				text="Moderate"
+				key="Moderate" />
+			<IconTabFilter
+				icon="sap-icon://wallet"
+				iconColor="Negative"
+				count="{worklistView>/Expensive}"
+				text="Expensive"
+				key="Expensive" />
+		</items>
+		<content>
 			<Table
 				id="table"
 				width="auto"
@@ -95,6 +125,8 @@
 					</ColumnListItem>
 				</items>
 			</Table>
+		</content>
+	</IconTabBar>
 		</semantic:content>
 
 		<semantic:sendEmailAction>
