@@ -10,6 +10,10 @@ sap.ui.define([
 			var oViewModel,
 				fnSetAppNotBusy,
 				iOriginalBusyDelay = this.getView().getBusyIndicatorDelay();
+				
+			var oDataModel = this.getOwnerComponent().getModel();
+
+			oDataModel.setUseBatch(false);
 
 			oViewModel = new JSONModel({
 				busy : true,
