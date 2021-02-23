@@ -26,6 +26,15 @@
 				}"
 				numberUnit="{CurrencyCode}">
 		<ObjectAttribute text="{Name}" />
+		<statuses>
+					<ObjectStatus text="{
+						parts: [
+							{path: 'WeightUnit'},
+							{path: 'WeightMeasure'}
+						],
+						formatter : '.formatter.delivery'
+					}"/>
+				</statuses>
 		</ObjectHeader>
 
 
