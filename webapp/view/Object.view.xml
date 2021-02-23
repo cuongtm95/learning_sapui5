@@ -8,26 +8,27 @@
 
 	<semantic:SemanticPage
 		id="page"
-		headerPinnable="false"
+		headerPinnable="true"
 		toggleHeaderOnTitleClick="false"
 		busy="{objectView>/busy}"
 		busyIndicatorDelay="{objectView>/delay}">
-
-		<semantic:titleHeading>
-			<Title
-				text="{ProductID}"
-				level="H2"/>
-		</semantic:titleHeading>
-
+		
 		<semantic:headerContent>
-			<ObjectNumber
+			<ObjectHeader
+				id="objectHeader"
+				title="{ProductID}"
+				titleActive="true"
+				titlePress="onShowDetailPopover"
+				responsive="true"
 				number="{
-					path: 'Price',
-					formatter: '.formatter.numberUnit'
+							path: 'Price',
+							formatter: '.formatter.numberUnit'
 				}"
-				unit="{CurrencyCode}"
-			/>
-			<ObjectAttribute text="{Name}"/>
+				numberUnit="{CurrencyCode}">
+		<ObjectAttribute text="{Name}" />
+		</ObjectHeader>
+
+
 			
 			<mvc:XMLView viewName="opensap.manageproducts.ManageProducts.view.ProductDetails"/>
 			
