@@ -69,7 +69,14 @@
 			},
 			"": {
 				"dataSource": "mainService",
-				"preload": true
+				"settings": {
+					"defaultBindingMode": "TwoWay",
+					"preload": true,
+					"useBatch": false,
+					"metadataUrlParams": {
+						"sap-documentation": "heading"
+					}
+				}
 			}
 		},
 		"routing": {
