@@ -3,8 +3,16 @@ sap.ui.define([
 	"sap/ui/model/json/JSONModel",
 	"../model/formatter",
 	"sap/ui/model/Filter",
-	"sap/ui/model/FilterOperator"
-], function (BaseController, JSONModel, formatter, Filter, FilterOperator) {
+	"sap/ui/model/FilterOperator",
+	"sap/m/Text",
+	"sap/m/TextArea",
+	"sap/m/MessageToast",
+	"sap/m/Dialog",
+	"sap/m/DialogType",
+	"sap/m/Button",
+	"sap/m/ButtonType",
+	"sap/m/Label"
+], function (BaseController, JSONModel, formatter, Filter, FilterOperator, Text, TextArea, MessageToast, Dialog, DialogType, Button, ButtonType, Label) {
 	"use strict";
 
 	return BaseController.extend("opensap.manageproducts.ManageProducts.controller.Worklist", {
@@ -186,10 +194,57 @@ sap.ui.define([
 			 * Event handler when the add button gets pressed
 			 * @public
 			 */
-			onAdd: function() {
+		onAdd: function() {
 				this.getRouter().navTo("add");
 			},
-
+			
+		/**
+			 * Event handler when the delete button gets pressed
+			 * @public
+			 */	
+		onDelete: function(oEvent) {
+			var oList = oEvent.getSource(),
+				oContext = oList.getBindingContext(),
+				sItemName = oContext.getProperty("Name"),
+				sPath = oContext.getPath();
+			
+			// after deletion put the focus back to the list
+			oList.attachEventOnce("updateFinished", oList.focus, oList);
+			
+			// show confirm options dialog
+			if(!this.oConfirmDialog) {
+				this.oConfirmDialog = new Dialog({
+					type: DialogType.Message,
+					title: "Are you sure?",
+					content: new Text({ text: "Do you really want to delete this product?"}),
+					beginButton: new Button({
+						type: ButtonType.Emphasized,
+						text: "Delete",
+						press: function() {
+							this.getModel().remove(sPath, {
+								success: function() {
+									MessageToast.show("Product " + sItemName + " has been deleted successfully" );
+								},
+								error: function() {
+									MessageToast.show("Product " + sItemName + " could not be deleted" );
+								}
+							});
+							this.oConfirmDialog.close();
+						}.bind(this)
+					}),
+					endButton: new Button({
+						text: "Cancel",
+						press: function(){
+							this.oConfirmDialog.close();
+						}.bind(this)
+					})
+				});
+			}
+			
+			this.oConfirmDialog.open();
+		},
+		
+		
 
 		/* =========================================================== */
 		/* internal methods                                            */
