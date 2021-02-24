@@ -1,5 +1,7 @@
 ## Learning the Framework SAP UI5 using documentation from openSAP
 
+https://open.sap.com/courses/ui51
+
 ## IDE: SAP WEB IDE Full-Stack
 
 ## Setup
