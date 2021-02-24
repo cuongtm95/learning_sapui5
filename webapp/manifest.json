@@ -71,8 +71,6 @@
 				"dataSource": "mainService",
 				"settings": {
 					"defaultBindingMode": "TwoWay",
-					"preload": true,
-					"useBatch": false,
 					"metadataUrlParams": {
 						"sap-documentation": "heading"
 					}

@@ -4,7 +4,8 @@ sap.ui.define([
 	"./WorklistJourney",
 	"./NavigationJourney",
 	"./NotFoundJourney",
-	"./ObjectJourney"
+	"./ObjectJourney",
+	"./pages/NewProduct"
 ], function (Opa5, Startup) {
 	"use strict";
 
